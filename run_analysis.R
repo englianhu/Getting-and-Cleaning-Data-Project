@@ -4,12 +4,12 @@ library(reshape2)
 # Download zipped file
 URL <- 'https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip'
 zipfile <- paste0(getwd(), '/getdata-projectfiles-UCI-HAR-Dataset.zip')
-download.file(URL, destfile=zipfile); file.remove(zipfile)
+download.file(URL, destfile=zipfile)
 cat('Downloaded "', zipfile, '"\n',sep='')
 rm(URL)
 
 # Unzip file
-unzip(zipfile)
+unzip(zipfile); file.remove(zipfile)
 ifelse('UCI HAR Dataset' %in% dir(), 'File has unzip', stop('Folder not exist!'))
 rm(zipfile)
 
@@ -57,3 +57,4 @@ wide_data <- dcast(long_data, label + subject ~ variable, mean)
 # Save dataset
 cat('Saving dataset.\n')
 write.table(wide_data, file="Clean_Mean.txt", quote=FALSE, row.names=FALSE)
+
