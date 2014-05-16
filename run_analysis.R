@@ -44,9 +44,8 @@ for(i in seq(dat2)){
 
 # Merge the datasets
 cat('Merging datasets to be one dataset.\n')
-df <- rbind(df[[1]], df[[2]])
-df = merge(labels$activity_labels, df, by.x='Code', by.y='Code')
-df <- df[,-1]; rm(labels)
+dfm = merge(labels$activity_labels, df, by.x='Code', by.y='Code')
+dfm <- dfm[,-1]; rm(labels, df)
 
 # Reshape the dataset
 cat('Melting dataset.\n')
