@@ -9,7 +9,7 @@ cat('Downloaded "', zipfile, '"\n',sep='')
 rm(URL)
 
 # Unzip file
-unzip(paste("data", destfile, sep="/"), exdir="data")
+unzip(zipfile)
 ifelse('UCI HAR Dataset' %in% dir(), 'File has unzip', stop('Folder not exist!'))
 rm(zipfile)
 
