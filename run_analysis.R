@@ -40,13 +40,13 @@ for(i in seq(dat2)){
 
 for(i in seq(dat2)){
   df <- cbind(dat2[[i]][[1]],dat2[[i]][[3]],dat2[[i]][[2]])
-}; rm(i)
+}; rm(i, dat2)
 
 # Merge the datasets
 cat('Merging datasets to be one dataset.\n')
 df <- rbind(df[[1]], df[[2]])
-df = merge(labels, df, by.x="Label", by.y="Label")
-df <- df[,-1]
+df = merge(labels$activity_labels, df, by.x="Label", by.y="Label")
+df <- df[,-1]; rm(labels)
 
 # Reshape the dataset
 cat('Melting dataset.\n')
@@ -57,4 +57,3 @@ wide_data <- dcast(long_data, label + subject ~ variable, mean)
 # Save dataset
 cat('Saving dataset.\n')
 write.table(wide_data, file="Clean_Mean.txt", quote=FALSE, row.names=FALSE)
-
