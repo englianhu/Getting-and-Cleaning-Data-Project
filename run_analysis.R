@@ -45,15 +45,15 @@ for(i in seq(dat2)){
 # Merge the datasets
 cat('Merging datasets to be one dataset.\n')
 df <- rbind(df[[1]], df[[2]])
-df = merge(labels$activity_labels, df, by.x="Label", by.y="Label")
+df = merge(labels$activity_labels, df, by.x='Code', by.y='Code')
 df <- df[,-1]; rm(labels)
 
 # Reshape the dataset
 cat('Melting dataset.\n')
-long_data <- melt(df, id = c("Label", "subject"))
+long_data <- melt(df, id = c("Label", "Subject"))
 cat('Dcasting dataset.\n')
-wide_data <- dcast(long_data, label + subject ~ variable, mean)
+wide_data <- dcast(long_data, Label + Subject ~ variable, mean)
 
 # Save dataset
 cat('Saving dataset.\n')
-write.table(wide_data, file="Clean_Mean.txt", quote=FALSE, row.names=FALSE)
+write.table(wide_data, file="tidydata.txt", quote=FALSE, row.names=FALSE)
