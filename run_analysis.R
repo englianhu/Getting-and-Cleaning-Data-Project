@@ -49,7 +49,7 @@ dfm <- dfm[,-1]; rm(labels, df)
 
 # Reshape the dataset
 cat('Melting dataset.\n')
-long_data <- melt(df, id = c("Label", "Subject"))
+long_data <- melt(dfm, id = c("Label", "Subject"))
 cat('Dcasting dataset.\n')
 wide_data <- dcast(long_data, Label + Subject ~ variable, mean)
 
